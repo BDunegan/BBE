@@ -49,6 +49,14 @@ const NavItem = styled(NavLink)`
 export default function Navigation() {
   return (
     <StyledNav>
+      {/* Navigation card for the Home tab */}
+      <NavCard>
+        <NavItem to="/">Home</NavItem>
+      </NavCard>
+      {/* Navigation card for the Contact tab */}
+      <NavCard>
+        <NavItem to="/contact">Contact</NavItem>
+      </NavCard>
       {/* Navigation card for the Corporate Courses tab */}
       <NavCard>
         <NavItem to="/corporate-courses">Corporate Courses</NavItem>
@@ -56,6 +64,18 @@ export default function Navigation() {
       {/* Navigation card for the Private Courses tab */}
       <NavCard>
         <NavItem to="/private-courses">Private Courses</NavItem>
+      </NavCard>
+      {/* Navigation card for the About tab */}
+      <NavCard>
+        <NavItem to="/about">About</NavItem>
+      </NavCard>
+      {/* Navigation card for the Free Trial tab */}
+      <NavCard>
+        <NavItem to="/free-trial">Free Trial</NavItem>
+      </NavCard>
+      {/* Navigation card for the Prices tab */}
+      <NavCard>
+        <NavItem to="/prices">Prices</NavItem>
       </NavCard>
     </StyledNav>
   );
