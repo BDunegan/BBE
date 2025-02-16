@@ -1,6 +1,5 @@
 // Navigation.tsx
 import styled from 'styled-components';
-import logo from './logo.png';
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -71,7 +70,7 @@ export default function Navigation() {
   return (
     <StyledNav>
       <NavInner>
-        <SmallLogo src={logo} alt="BBE Logo" />
+        <SmallLogo src="/logo.png" alt="BBE Logo" />
         <NavCard>
           <NavItem href="#home">Home</NavItem>
         </NavCard>

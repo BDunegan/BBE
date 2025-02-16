@@ -1,6 +1,5 @@
 // Header.tsx
 import styled from 'styled-components';
-import logo from './logo.png'; // Use your uploaded logo
 
 // A more Material-like App Bar design
 const StyledHeader = styled.header`
@@ -76,7 +75,7 @@ export default function Header() {
         <Title>Boarnet Business English</Title>
         <Para>Let’s learn some BBE!</Para>
       </TitleWrapper>
-      <Logo src={logo} alt="Boarnet Business English Logo" />
+      <Logo src="/logo.png" alt="BBE Logo" />
     </StyledHeader>
   );
 }

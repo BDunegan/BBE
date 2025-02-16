@@ -1,7 +1,6 @@
 // Footer.tsx
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import logo from './logo.png';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -54,7 +53,7 @@ const FooterLogo = styled.img`
 export default function Footer() {
   return (
     <StyledFooter>
-      <FooterLogo src={logo} alt="BBE Logo" />
+      <FooterLogo src="/logo.png" alt="BBE Logo" />
       <FooterText>
         All rights reserved by Ian Boarnet:
         <FooterLink to="https://www.copyright.gov/">
