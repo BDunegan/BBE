@@ -13,7 +13,7 @@ import PricesPage from './components/Prices';
 
 import Footer from './components/Footer';
 
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const Main = styled.div`
