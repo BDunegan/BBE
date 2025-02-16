@@ -1,49 +1,66 @@
 // Footer.tsx
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import logo from './logo.png';
 
-// Styled component for the footer container
 const StyledFooter = styled.footer`
-  display: flex; /* Use flexbox for alignment */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  width: 100%; /* Stretch footer to full width of the viewport */
-  background-color: rgb(22, 48, 196); /* Blue background color */
-  padding: 0.5rem; /* Add padding inside the footer */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #001f3f;
+  padding: 1rem;
+  margin-top: 2rem;
+  box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
 `;
 
-// Styled component for footer text
 const FooterText = styled.p`
-  margin: 0; /* Remove default margin for paragraphs */
-  font-size: calc(2px + 1vw); /* Responsive font size based on viewport width */
+  margin: 0;
+  font-size: 0.95rem;
+  color: #fff;
+  font-family: 'Open Sans', Arial, sans-serif;
+
+  @media (max-width: 600px) {
+    font-size: 0.85rem;
+  }
 `;
 
-// Component for footer links
-// Props: `to` - destination URL, `children` - content inside the link
-const FooterLink = ({ to, children }: { to: string; children: React.ReactNode }) => {
-  return (
-    <Link
-      style={{
-        padding: '0.5rem', /* Add padding around the link */
-        margin: '0.25rem', /* Add spacing between links */
-        color: '#fff', /* White text color */
-        textDecoration: 'none', /* Remove underline from links */
-      }}
-      to={to}
-    >
-      {children}
-    </Link>
-  );
-};
+const FooterLink = styled(Link)`
+  padding: 0.25rem;
+  margin: 0.25rem;
+  color: #d4a017;
+  text-decoration: none;
 
-// Footer component rendering the footer section
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const FooterLogo = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  border: 2px solid #4a6fa5;
+  background-color: #fff;
+  object-fit: contain;
+  @media (max-width: 600px) {
+    margin-right: 0.5rem;
+    height: 40px;
+    width: 40px;
+  }
+`;
+
 export default function Footer() {
   return (
     <StyledFooter>
-      {/* Footer text with a copyright link */}
+      <FooterLogo src={logo} alt="BBE Logo" />
       <FooterText>
         All rights reserved by Ian Boarnet:
-        <FooterLink to="https://www.copyright.gov/">Credits</FooterLink> &copy; {new Date().getFullYear()}
+        <FooterLink to="https://www.copyright.gov/">
+          Credits
+        </FooterLink>
+        &copy; {new Date().getFullYear()}
       </FooterText>
     </StyledFooter>
   );

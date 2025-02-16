@@ -1,116 +1,86 @@
+// CorporateCourses.tsx
 import { useState } from 'react';
+import { PageWrapper, Title, Subtitle, Paragraph } from './Shared';
 import styled from 'styled-components';
 
-// Styled components for layout and design
-/* Main wrapper for the page content */
-const PageWrapper = styled.div`
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 960px;
-  margin: 2rem auto;
-  font-family: Arial, sans-serif;
-`;
-
-/* Wrapper for individual sections */
 const Section = styled.div`
   margin-bottom: 1.5rem;
 `;
 
-/* Styling for the main page title */
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-`;
-
-/* Styling for section subtitles */
-const Subtitle = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
-`;
-
-/* General paragraph styling for descriptive content */
-const Paragraph = styled.p`
-  line-height: 1.6;
-  margin-bottom: 1rem;
-`;
-
-/* Container for expandable sections */
 const ExpandableSection = styled.div`
   margin-top: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
+  margin-bottom: 1rem;
 `;
 
-/* Header for each expandable section */
 const Header = styled.div`
   padding: 1rem;
-  background-color: #0070f3;
-  color: white;
+  background-color: #4a6fa5;
+  color: #fff;
   font-weight: bold;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   &:hover {
-    background-color: #005bb5;
+    background-color: #365f91;
   }
 `;
 
-/* Content inside an expandable section */
 const Content = styled.div<{ isOpen: boolean }>`
   padding: 1rem;
-  background-color: white;
+  background-color: #fff;
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  color: #555;
 `;
 
-/* Rotating arrow for visual feedback on section toggle */
 const Arrow = styled.span<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'rotate(90deg)' : 'rotate(0deg)')};
   transition: transform 0.2s ease-in-out;
 `;
 
-/* List of examples inside expandable sections */
 const ExampleList = styled.ul`
   padding-left: 1.5rem;
   margin: 0;
   list-style-type: disc;
 `;
 
-/* Individual items in the example list */
 const ExampleItem = styled.li`
   margin-bottom: 0.5rem;
 `;
 
-/* General unordered list for structured content */
 const List = styled.ul`
   list-style: disc;
   margin: 1rem 0;
   padding-left: 1.5rem;
+  color: #555;
 `;
 
-/* Individual list items */
 const ListItem = styled.li`
   margin-bottom: 0.5rem;
 `;
 
-// Component for the Corporate Courses page
+interface Industry {
+  title: string;
+  examples: string[];
+}
+
 export default function CorporateCourses() {
-    // State to track which section is expanded
-    const [openSection, setOpenSection] = useState<string | null>(null);
+  // Instead of a single string, use an object of { [title]: boolean }
+  const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>(
+    {}
+  );
 
-    // Function to toggle section visibility
-    const toggleSection = (section: string) => {
-        setOpenSection(openSection === section ? null : section);
-    };
+  const toggleSection = (section: string) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section], // flip the boolean for this section
+    }));
+  };
 
-    // Data for industries and their examples
-    const industries = [
+  const industries: Industry[] = [
     {
       title: 'Corporate & Finance',
       examples: [
@@ -215,56 +185,48 @@ export default function CorporateCourses() {
 
   return (
     <PageWrapper>
-        {/* Main Page Title */}
-        <Title>Corporate Courses</Title>
+      <Title>Corporate Courses</Title>
 
-        {/* Introductory Section */}
-        <Section>
-            <Paragraph>
-            Unlock the full potential of your team with tailored Corporate Business English courses. 
-            Designed to enhance communication skills in a global business environment, my programs focus on the language and soft skills necessary for success in the workplace.
-            From emails and presentations to negotiations and leadership, my courses offer practical training that empowers employees at all levels to communicate confidently and professionally in English.
-            </Paragraph>
-        </Section>
+      <Section>
+        <Paragraph>
+        Unlock the full potential of your team with tailored Corporate Business English courses. Designed to enhance communication skills in a global business environment, 
+        my programs focus on the language and soft skills necessary for success in the workplace. From emails and presentations to negotiations and leadership, my courses offer practical training that empowers employees at 
+        all levels to communicate confidently and professionally in English.
+        </Paragraph>
+      </Section>
 
-        {/* Key Features Section */}
-        <Section>
-            <Subtitle>Key Features</Subtitle>
-            <List>
-                <ListItem>
-                    <strong>Customizable Content:</strong> Courses can be tailored to meet the specific needs of your industry or organization, ensuring relevant learning outcomes.
-                </ListItem>
-                <ListItem>
-                    <strong>Flexible Learning Formats:</strong> Choose from in-person training, online sessions, or blended learning options for maximum convenience.
-                </ListItem>
-                <ListItem>
-                    <strong>Practical Skills:</strong> Focused on real-world scenarios, including business writing, meetings, report generation, customer service, and cross-cultural communication.
-                </ListItem>
-                <ListItem>
-                    <strong>Progressive Learning:</strong> Structured to cater to various proficiency levels, from beginner to advanced, with measurable progress through the course.
-                </ListItem>
-            </List>
-        </Section>
-        
-        {/* Example Industry-Specific Courses */}
-        <Section>
-            <Subtitle>Example Industry-Specific Courses</Subtitle>
-            {industries.map((industry) => (
-                <ExpandableSection key={industry.title}>
-                <Header onClick={() => toggleSection(industry.title)}>
-                    {industry.title}
-                    <Arrow isOpen={openSection === industry.title}>&#8250;</Arrow>
-                </Header>
-                <Content isOpen={openSection === industry.title}>
-                    <ExampleList>
-                    {industry.examples.map((example, idx) => (
-                        <ExampleItem key={idx}>{example}</ExampleItem>
-                    ))}
-                    </ExampleList>
-                </Content>
-                </ExpandableSection>
-            ))}
-        </Section>
+      <Section>
+        <Subtitle>Key Features</Subtitle>
+        <List>
+          <ListItem><strong>Customizable Content:</strong> Courses can be tailored to meet the specific needs of your industry or organization, ensuring relevant learning outcomes.</ListItem>
+          <ListItem><strong>Flexible Learning Formats:</strong> Choose from in-person training, online sessions, or blended learning options for maximum convenience.</ListItem>
+          <ListItem><strong>Practical Skills:</strong> Focused on real-world scenarios, including business writing, meetings, report generation, customer service, and cross-cultural communication.</ListItem>
+          <ListItem><strong>Progressive Learning:</strong> Structured to cater to various proficiency levels, from beginner to advanced, with measurable progress through the course.</ListItem>
+        </List>
+      </Section>
+
+      <Section>
+        <Subtitle>Example Industry-Specific Courses</Subtitle>
+        {industries.map((industry) => {
+          const isOpen = openSections[industry.title] ?? false;
+
+          return (
+            <ExpandableSection key={industry.title}>
+              <Header onClick={() => toggleSection(industry.title)}>
+                {industry.title}
+                <Arrow isOpen={isOpen}>&#8250;</Arrow>
+              </Header>
+              <Content isOpen={isOpen}>
+                <ExampleList>
+                  {industry.examples.map((example, idx) => (
+                    <ExampleItem key={idx}>{example}</ExampleItem>
+                  ))}
+                </ExampleList>
+              </Content>
+            </ExpandableSection>
+          );
+        })}
+      </Section>
     </PageWrapper>
   );
 }

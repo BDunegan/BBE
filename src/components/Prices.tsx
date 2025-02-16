@@ -1,47 +1,20 @@
-// PricesPage.tsx
-import { styled } from 'styled-components';
-import { Link } from 'react-router-dom';
-
-// Styled components
-const PageWrapper = styled.div`
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 2rem auto;
-  font-family: Arial, sans-serif;
-  text-align: center;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-`;
-
-const Subtitle = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
-`;
-
-const Paragraph = styled.p`
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  text-align: justify;
-`;
+// Prices.tsx
+import { PageWrapper, Title, Subtitle, Paragraph } from './Shared';
+import styled from 'styled-components';
 
 const PriceTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
+  font-size: 0.95rem;
 `;
 
 const TableHeader = styled.th`
-  background-color: #0070f3;
-  color: white;
+  background-color: #4a6fa5;
+  color: #fff;
   padding: 0.75rem;
   border: 1px solid #ddd;
+  text-align: left;
 `;
 
 const TableRow = styled.tr`
@@ -53,31 +26,16 @@ const TableRow = styled.tr`
 const TableData = styled.td`
   padding: 0.75rem;
   border: 1px solid #ddd;
+  color: #555;
 `;
 
-const ContactButton = styled(Link)`
-  display: block;
-  width: max-content;
-  margin: 2rem auto 0;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.2rem;
-  color: white;
-  background-color: #0070f3;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background 0.3s;
-
-  &:hover {
-    background-color: #005bb5;
-  }
-`;
 
 const Section = styled.div`
   margin-top: 2rem;
   padding: 1.5rem;
-  background: white;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.03);
 `;
 
 export default function PricesPage() {
@@ -158,7 +116,6 @@ export default function PricesPage() {
         For more than 20 units or for large groups, reach out to discuss special pricing options.
       </Paragraph>
 
-      <ContactButton to="/contact">Contact Me</ContactButton>
     </PageWrapper>
   );
 }

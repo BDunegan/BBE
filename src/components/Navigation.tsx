@@ -1,82 +1,99 @@
-// components/Navigation.tsx
-import { styled } from 'styled-components';
-import { NavLink } from 'react-router-dom';
+// Navigation.tsx
+import styled from 'styled-components';
+import logo from './logo.png';
 
-// Styled component for the navigation bar container
 const StyledNav = styled.nav`
-  display: flex; /* Arrange navigation items in a row */
-  justify-content: center; /* Center the items horizontally */
-  align-items: center; /* Align items vertically */
-  background-color: #333; /* Dark background color for the navigation bar */
-  position: sticky; /* Stick to the top of the viewport */
-  top: 0; /* Position it at the very top */
-  z-index: 1000; /* Ensure it appears above other elements */
-  padding: 1rem; /* Add padding inside the navigation bar */
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* Make it sticky */
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 `;
 
-// Styled component for individual navigation cards
+const NavInner = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  gap: 0.75rem;
+`;
+
 const NavCard = styled.div`
-  background-color: #444; /* Slightly lighter background for navigation cards */
-  border-radius: 8px; /* Rounded corners for the card */
-  padding: 1rem; /* Add padding inside the card */
-  margin: 0.5rem; /* Space between cards */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: transform 0.2s, background-color 0.2s; /* Smooth transition for hover effects */
+  background-color: #444;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s, transform 0.2s;
 
   &:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-    background-color: #555; /* Darker background on hover */
+    background-color: #555;
+    transform: scale(1.2);
   }
 `;
 
-// Styled component for navigation links
-const NavItem = styled(NavLink)`
-  color: white; /* Text color */
-  text-decoration: none; /* Remove underline from links */
-  font-size: 1rem; /* Standard font size */
+// Replace NavLink with a styled <a> that points to our div ids
+const NavItem = styled.a`
+  color: #fff;
+  text-decoration: none;
+  font-size: calc(1vh + 10px);
 
   &:hover {
-    text-decoration: underline; /* Add underline on hover for emphasis */
+    text-decoration: underline;
   }
 
-  &.active {
-    color: #0070f3; /* Highlight active link with a blue color */
-    font-weight: bold; /* Make the active link text bold */
+  /* If you want an "active" style, you'd need custom logic
+     e.g., using IntersectionObserver or a scroll library,
+     or do simpler styling here for demonstration. */
+`;
+
+const SmallLogo = styled.img`
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #4a6fa5;
+  background-color: #fff;
+  margin-right: 0.75rem;
+
+  @media (max-width: 600px) {
+    margin-bottom: 0.5rem;
   }
 `;
 
-// Functional component for the navigation bar
 export default function Navigation() {
   return (
     <StyledNav>
-      {/* Navigation card for the Home tab */}
-      <NavCard>
-        <NavItem to="/">Home</NavItem>
-      </NavCard>
-      {/* Navigation card for the Contact tab */}
-      <NavCard>
-        <NavItem to="/contact">Contact</NavItem>
-      </NavCard>
-      {/* Navigation card for the Corporate Courses tab */}
-      <NavCard>
-        <NavItem to="/corporate-courses">Corporate Courses</NavItem>
-      </NavCard>
-      {/* Navigation card for the Private Courses tab */}
-      <NavCard>
-        <NavItem to="/private-courses">Private Courses</NavItem>
-      </NavCard>
-      {/* Navigation card for the About tab */}
-      <NavCard>
-        <NavItem to="/about">About</NavItem>
-      </NavCard>
-      {/* Navigation card for the Free Trial tab */}
-      <NavCard>
-        <NavItem to="/free-trial">Free Trial</NavItem>
-      </NavCard>
-      {/* Navigation card for the Prices tab */}
-      <NavCard>
-        <NavItem to="/prices">Prices</NavItem>
-      </NavCard>
+      <NavInner>
+        <SmallLogo src={logo} alt="BBE Logo" />
+        <NavCard>
+          <NavItem href="#home">Home</NavItem>
+        </NavCard>
+        <NavCard>
+          <NavItem href="#contact">Contact</NavItem>
+        </NavCard>
+        <NavCard>
+          <NavItem href="#corporate-courses">Corporate Courses</NavItem>
+        </NavCard>
+        <NavCard>
+          <NavItem href="#private-courses">Private Courses</NavItem>
+        </NavCard>
+        <NavCard>
+          <NavItem href="#about">About</NavItem>
+        </NavCard>
+        <NavCard>
+          <NavItem href="#free-trial">Free Trial</NavItem>
+        </NavCard>
+        <NavCard>
+          <NavItem href="#prices">Prices</NavItem>
+        </NavCard>
+      </NavInner>
     </StyledNav>
   );
 }

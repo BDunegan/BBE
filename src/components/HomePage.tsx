@@ -1,42 +1,11 @@
 // HomePage.tsx
-import { styled } from 'styled-components';
-import { Link } from 'react-router-dom';
-
-// Styled components
-const PageWrapper = styled.div`
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 960px;
-  margin: 2rem auto;
-  font-family: Arial, sans-serif;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-`;
-
-const Subtitle = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
-  text-align: center;
-`;
-
-const Paragraph = styled.p`
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  text-align: center;
-`;
-
+import { PageWrapper, Title, Subtitle, Paragraph } from './Shared';
+import styled from 'styled-components';
 const List = styled.ul`
   list-style: disc;
-  margin: 1rem auto;
+  margin: 1rem 0;
   padding-left: 1.5rem;
-  max-width: 600px;
+  color: #555;
 `;
 
 const ListItem = styled.li`
@@ -47,36 +16,37 @@ const Testimonial = styled.blockquote`
   font-style: italic;
   margin: 1rem auto;
   padding: 1rem;
-  background: #f9f9f9;
-  border-left: 5px solid #0070f3;
+  background: #fff;
+  border-left: 5px solid #d4a017;
   max-width: 600px;
-  text-align: center;
+  color: #333;
+  border-radius: 8px;
 `;
 
 const StepsList = styled.ol`
-  margin: 1rem auto;
+  margin: 1rem 0;
   padding-left: 1.5rem;
   max-width: 600px;
+  color: #555;
 `;
 
 const Step = styled.li`
   margin-bottom: 0.5rem;
 `;
 
-const ContactButton = styled(Link)`
-  display: block;
-  width: max-content;
-  margin: 2rem auto 0;
+const ContactButton = styled.a`
+  display: inline-block;
   padding: 0.75rem 1.5rem;
-  font-size: 1.2rem;
-  color: white;
-  background-color: #0070f3;
-  border-radius: 5px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4a6fa5;
+  border-radius: 8px;
   text-decoration: none;
   transition: background 0.3s;
+  margin-top: 2rem;
 
   &:hover {
-    background-color: #005bb5;
+    background-color: #365f91;
   }
 `;
 
@@ -133,13 +103,13 @@ export default function HomePage() {
       <Section>
         <Subtitle>Improve your English in 3 easy steps</Subtitle>
         <StepsList>
-          <Step>1. Download your free study guide</Step>
-          <Step>2. Schedule a free consultation</Step>
-          <Step>3. Take your first class</Step>
+          <Step>Download your free study guide</Step>
+          <Step>Schedule a free consultation</Step>
+          <Step>Take your first class</Step>
         </StepsList>
       </Section>
 
-      <ContactButton to="/contact">Contact Me</ContactButton>
+      <ContactButton href="#contact">Contact Me</ContactButton>
     </PageWrapper>
   );
 }
