@@ -1,6 +1,6 @@
-// Prices.tsx
 import { PageWrapper, Title, Subtitle, Paragraph } from './Shared';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const PriceTable = styled.table`
   width: 100%;
@@ -29,7 +29,6 @@ const TableData = styled.td`
   color: #555;
 `;
 
-
 const Section = styled.div`
   margin-top: 2rem;
   padding: 1.5rem;
@@ -39,83 +38,80 @@ const Section = styled.div`
 `;
 
 export default function PricesPage() {
+  const { t } = useTranslation();
+
   return (
     <PageWrapper>
-      <Title>Prices</Title>
+      <Title>{t('prices_title')}</Title>
 
-      <Paragraph>
-        Courses are available online or in person if you're in Munich, Rosenheim, or surrounding areas.
-      </Paragraph>
+      <Paragraph>{t('prices_intro')}</Paragraph>
 
       <Section>
-        <Subtitle>Individual Courses</Subtitle>
+        <Subtitle>{t('individual_courses')}</Subtitle>
         <PriceTable>
           <thead>
             <tr>
-              <TableHeader>Course Type</TableHeader>
-              <TableHeader>Price</TableHeader>
-              <TableHeader>Units</TableHeader>
+              <TableHeader>{t('course_type')}</TableHeader>
+              <TableHeader>{t('price')}</TableHeader>
+              <TableHeader>{t('units')}</TableHeader>
             </tr>
           </thead>
           <tbody>
             <TableRow>
-              <TableData>Single Unit</TableData>
-              <TableData>€37 per unit</TableData>
-              <TableData>1 Unit = 45 minutes</TableData>
+              <TableData>{t('single_unit')}</TableData>
+              <TableData>{t('single_unit_price')}</TableData>
+              <TableData>{t('single_unit_details')}</TableData>
             </TableRow>
             <TableRow>
-              <TableData>Package - 20 Units</TableData>
-              <TableData>€700 (€35 per Unit)</TableData>
-              <TableData>20 Units</TableData>
+              <TableData>{t('package_20')}</TableData>
+              <TableData>{t('package_20_price')}</TableData>
+              <TableData>{t('package_20_details')}</TableData>
             </TableRow>
             <TableRow>
-              <TableData>Package - 40 Units</TableData>
-              <TableData>€1,320 (€33 per Unit)</TableData>
-              <TableData>40 Units</TableData>
+              <TableData>{t('package_40')}</TableData>
+              <TableData>{t('package_40_price')}</TableData>
+              <TableData>{t('package_40_details')}</TableData>
             </TableRow>
             <TableRow>
-              <TableData>Package - 60 Units</TableData>
-              <TableData>€1,860 (€31 per Unit)</TableData>
-              <TableData>60 Units</TableData>
+              <TableData>{t('package_60')}</TableData>
+              <TableData>{t('package_60_price')}</TableData>
+              <TableData>{t('package_60_details')}</TableData>
             </TableRow>
           </tbody>
         </PriceTable>
       </Section>
 
       <Section>
-        <Subtitle>Group Courses</Subtitle>
+        <Subtitle>{t('group_courses')}</Subtitle>
         <PriceTable>
           <thead>
             <tr>
-              <TableHeader>Group Size</TableHeader>
-              <TableHeader>Price Per Person</TableHeader>
-              <TableHeader>Notes</TableHeader>
+              <TableHeader>{t('group_size')}</TableHeader>
+              <TableHeader>{t('price_per_person')}</TableHeader>
+              <TableHeader>{t('notes')}</TableHeader>
             </tr>
           </thead>
           <tbody>
             <TableRow>
-              <TableData>Pairs</TableData>
-              <TableData>€16 per unit</TableData>
-              <TableData>Per person</TableData>
+              <TableData>{t('pairs')}</TableData>
+              <TableData>{t('pairs_price')}</TableData>
+              <TableData>{t('pairs_notes')}</TableData>
             </TableRow>
             <TableRow>
-              <TableData>Groups (3+ people)</TableData>
-              <TableData>€12 per unit</TableData>
-              <TableData>Per person</TableData>
+              <TableData>{t('groups_3')}</TableData>
+              <TableData>{t('groups_3_price')}</TableData>
+              <TableData>{t('groups_3_notes')}</TableData>
             </TableRow>
             <TableRow>
-              <TableData>Large Groups / Special Prices</TableData>
-              <TableData>Contact for a quote</TableData>
-              <TableData>Special pricing available</TableData>
+              <TableData>{t('large_groups')}</TableData>
+              <TableData>{t('large_groups_price')}</TableData>
+              <TableData>{t('large_groups_notes')}</TableData>
             </TableRow>
           </tbody>
         </PriceTable>
       </Section>
 
-      <Paragraph>
-        For more than 20 units or for large groups, reach out to discuss special pricing options.
-      </Paragraph>
-
+      <Paragraph>{t('special_pricing')}</Paragraph>
     </PageWrapper>
   );
 }

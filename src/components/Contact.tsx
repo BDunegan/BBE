@@ -1,9 +1,9 @@
-// Contact.tsx
 import { useState } from 'react';
 import { PageWrapper, Title, Subtitle, Paragraph } from './Shared';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
-// 1) Import the necessary EmailJS functions
+// Import EmailJS functions
 import { init, send } from 'emailjs-com';
 init('t3ClDFpRX8kqY_t6O');
 
@@ -55,53 +55,49 @@ const SubmitButton = styled.button`
 `;
 
 export default function ContactPage() {
-  // 2) Store form data in state
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
 
-  // Handle form field changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // 3) Send the email via EmailJS when form is submitted
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
       await send(
-        'service_nk3aj6t',   // e.g. service_xxx
-        'template_7l1l74m',  // e.g. template_xxx
+        'service_nk3aj6t', // Service ID
+        'template_7l1l74m', // Template ID
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         }
       );
-      alert('Message sent successfully!');
-      // Optionally, clear form or reset state
+      alert(t('success_message'));
       setFormData({ name: '', email: '', message: '' });
-     } catch (error) {
+    } catch (error) {
       console.error('Email send error:', error);
-      alert('Failed to send message, please try again.');
+      alert(t('error_message'));
     }
   };
 
   return (
     <PageWrapper>
-      <Title>Contact Me</Title>
-      <Subtitle>Get in Touch</Subtitle>
-      <Paragraph>
-        Fill out the form below and I’ll get back to you as soon as possible.
-      </Paragraph>
+      <Title>{t('contact_title')}</Title>
+      <Subtitle>{t('contact_subtitle')}</Subtitle>
+      <Paragraph>{t('contact_intro')}</Paragraph>
 
       <Form onSubmit={handleSubmit}>
-        <Label htmlFor="name">Name</Label>
+        <Label htmlFor="name">{t('name_label')}</Label>
         <Input
           type="text"
           id="name"
@@ -111,7 +107,7 @@ export default function ContactPage() {
           required
         />
 
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">{t('email_label')}</Label>
         <Input
           type="email"
           id="email"
@@ -121,7 +117,7 @@ export default function ContactPage() {
           required
         />
 
-        <Label htmlFor="message">Message</Label>
+        <Label htmlFor="message">{t('message_label')}</Label>
         <TextArea
           id="message"
           name="message"
@@ -130,7 +126,7 @@ export default function ContactPage() {
           required
         />
 
-        <SubmitButton type="submit">Send Message</SubmitButton>
+        <SubmitButton type="submit">{t('send_message')}</SubmitButton>
       </Form>
     </PageWrapper>
   );

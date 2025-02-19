@@ -1,6 +1,6 @@
-// Footer.tsx
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -51,13 +51,15 @@ const FooterLogo = styled.img`
 `;
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <StyledFooter>
       <FooterLogo src="/logo.png" alt="BBE Logo" />
       <FooterText>
-        All rights reserved by Ian Boarnet:
+        {t('footer_text')}
         <FooterLink to="https://www.copyright.gov/">
-          Credits
+          {t('credits')}
         </FooterLink>
         &copy; {new Date().getFullYear()}
       </FooterText>

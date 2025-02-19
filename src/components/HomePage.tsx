@@ -1,6 +1,7 @@
-// HomePage.tsx
 import { PageWrapper, Title, Subtitle, Paragraph } from './Shared';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+
 const List = styled.ul`
   list-style: disc;
   margin: 1rem 0;
@@ -55,61 +56,55 @@ const Section = styled.div`
 `;
 
 export default function HomePage() {
+  const { t } = useTranslation();
+
   return (
     <PageWrapper>
-      <Title>From Hesitation to Conversation</Title>
+      <Title>{t('home_title')}</Title>
 
       <Section>
-        <Subtitle>Are you struggling with school?</Subtitle>
-        <Subtitle>Do you feel unprepared for business?</Subtitle>
-        <Subtitle>Are you preparing for a new job?</Subtitle>
-        <Subtitle>Does speaking English make you anxious?</Subtitle>
-        <Subtitle>Do your current English courses leave you frustrated?</Subtitle>
+        <Subtitle>{t('struggle_school')}</Subtitle>
+        <Subtitle>{t('unprepared_business')}</Subtitle>
+        <Subtitle>{t('preparing_job')}</Subtitle>
+        <Subtitle>{t('anxious_english')}</Subtitle>
+        <Subtitle>{t('frustrated_courses')}</Subtitle>
       </Section>
 
       <Section>
-        <Subtitle>Boarnet Business English will...</Subtitle>
+        <Subtitle>{t('bbe_will')}</Subtitle>
         <List>
-          <ListItem>Improve your English knowledge</ListItem>
-          <ListItem>Improve your confidence when speaking English</ListItem>
-          <ListItem>Provide you with situation-specific knowledge</ListItem>
-          <ListItem>Help you transfer skills from the classroom to the real world</ListItem>
+          <ListItem>{t('improve_knowledge')}</ListItem>
+          <ListItem>{t('improve_confidence')}</ListItem>
+          <ListItem>{t('situation_specific')}</ListItem>
+          <ListItem>{t('transfer_skills')}</ListItem>
         </List>
       </Section>
 
       <Section>
-        <Paragraph>
-          I understand the frustrations and anxiety that come with learning a new language. I know that English classes do not always help in real-life situations. I can help.
-        </Paragraph>
+        <Paragraph>{t('personal_understanding')}</Paragraph>
       </Section>
 
       <Section>
-        <Paragraph>
-          I have taught over 700 students from over 50 different countries.
-        </Paragraph>
+        <Paragraph>{t('taught_students')}</Paragraph>
 
-        <Testimonial>
-          “To say that he has been an essential resource to this school is simply an understatement.” – Former School
-        </Testimonial>
-        <Testimonial>
-          “I’m a firm believer today that not everyone has a gift to teach across an array of different populations, but Ian is a true natural.” – Former Student
-        </Testimonial>
+        <Testimonial>{t('testimonial_1')}</Testimonial>
+        <Testimonial>{t('testimonial_2')}</Testimonial>
       </Section>
 
       <Section>
-        <Subtitle>My students go on to work and go to school in English with confidence.</Subtitle>
+        <Subtitle>{t('students_confidence')}</Subtitle>
       </Section>
 
       <Section>
-        <Subtitle>Improve your English in 3 easy steps</Subtitle>
+        <Subtitle>{t('improve_steps')}</Subtitle>
         <StepsList>
-          <Step>Download your free study guide</Step>
-          <Step>Schedule a free consultation</Step>
-          <Step>Take your first class</Step>
+          <Step>{t('step_1')}</Step>
+          <Step>{t('step_2')}</Step>
+          <Step>{t('step_3')}</Step>
         </StepsList>
       </Section>
 
-      <ContactButton href="#contact">Contact Me</ContactButton>
+      <ContactButton href="#contact">{t('contact_me')}</ContactButton>
     </PageWrapper>
   );
 }

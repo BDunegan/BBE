@@ -1,6 +1,6 @@
-// FreeTrialPage.tsx
 import { PageWrapper, Title, Subtitle, Paragraph } from './Shared';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const List = styled.ul`
   list-style: disc;
@@ -35,38 +35,27 @@ const Section = styled.div`
 `;
 
 export default function FreeTrialPage() {
+  const { t } = useTranslation();
+
   return (
     <PageWrapper>
-      <Title>45-Minute Free Trial</Title>
+      <Title>{t('free_trial_title')}</Title>
 
-      <Paragraph>
-        The 45-minute free trial at Boarnet Business English is designed to give you a taste of a lesson. During the trial, you'll experience how the lessons are tailored to suit your professional goals and learning style.
-        Whether you want to improve your communication skills for meetings, presentations, or business writing, the free trial will allow you to decide if Boarnet Business English is a good fit for you.
-      </Paragraph>
+      <Paragraph>{t('free_trial_intro')}</Paragraph>
 
       <Section>
-        <Subtitle>Here's what you can expect:</Subtitle>
+        <Subtitle>{t('what_to_expect')}</Subtitle>
         <List>
-          <ListItem>
-            <strong>Personalized Needs Assessment:</strong> The session will begin with a brief conversation to understand your current level, areas for improvement, and specific business English goals.
-          </ListItem>
-          <ListItem>
-            <strong>Interactive Learning:</strong> You’ll engage in activities such as role-playing business scenarios, practicing writing emails, or discussing industry-specific topics, ensuring that the content is relevant to your professional needs.
-          </ListItem>
-          <ListItem>
-            <strong>Expert Feedback:</strong> Throughout the session, you will be provided with real-time feedback on grammar, vocabulary, pronunciation, and overall fluency.
-          </ListItem>
-          <ListItem>
-            <strong>Next Steps:</strong> At the end of the trial, we'll discuss your progress and recommend a learning plan to continue advancing your Business English skills.
-          </ListItem>
+          <ListItem>{t('expect_1')}</ListItem>
+          <ListItem>{t('expect_2')}</ListItem>
+          <ListItem>{t('expect_3')}</ListItem>
+          <ListItem>{t('expect_4')}</ListItem>
         </List>
       </Section>
 
-      <Paragraph>
-        This trial is perfect for anyone looking to enhance their professional language abilities in a supportive, results-driven environment.
-      </Paragraph>
+      <Paragraph>{t('trial_conclusion')}</Paragraph>
 
-      <ContactButton href="#contact">Contact Me</ContactButton>
+      <ContactButton href="#contact">{t('contact_me')}</ContactButton>
     </PageWrapper>
   );
 }

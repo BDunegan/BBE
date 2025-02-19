@@ -1,8 +1,8 @@
 // App.tsx
 import './App.css';
 import Header from './components/Header';
-
 import Navigation from './components/Navigation';
+
 import HomePage from './components/HomePage';
 import ContactPage from './components/Contact';
 import CorporateCourses from './components/CorporateCourses';
@@ -15,6 +15,9 @@ import Footer from './components/Footer';
 
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import { styled } from 'styled-components';
+
+import i18n from './i18n'; // Import i18n
+import { I18nextProvider } from 'react-i18next';
 
 const Main = styled.div`
   display: flex;
@@ -91,7 +94,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <I18nextProvider i18n={i18n}>
+      <RouterProvider router={router} />
+    </I18nextProvider>
+  );
 }
 
 export default App;

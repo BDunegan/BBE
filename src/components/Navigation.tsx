@@ -1,5 +1,5 @@
-// Navigation.tsx
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -8,7 +8,6 @@ const StyledNav = styled.nav`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* Make it sticky */
   position: sticky;
   top: 0;
   z-index: 999;
@@ -39,7 +38,6 @@ const NavCard = styled.div`
   }
 `;
 
-// Replace NavLink with a styled <a> that points to our div ids
 const NavItem = styled.a`
   color: #fff;
   text-decoration: none;
@@ -48,10 +46,6 @@ const NavItem = styled.a`
   &:hover {
     text-decoration: underline;
   }
-
-  /* If you want an "active" style, you'd need custom logic
-     e.g., using IntersectionObserver or a scroll library,
-     or do simpler styling here for demonstration. */
 `;
 
 const SmallLogo = styled.img`
@@ -67,30 +61,32 @@ const SmallLogo = styled.img`
 `;
 
 export default function Navigation() {
+  const { t } = useTranslation();
+
   return (
     <StyledNav>
       <NavInner>
         <SmallLogo src="/logo.png" alt="BBE Logo" />
         <NavCard>
-          <NavItem href="#home">Home</NavItem>
+          <NavItem href="#home">{t('home')}</NavItem>
         </NavCard>
         <NavCard>
-          <NavItem href="#contact">Contact</NavItem>
+          <NavItem href="#contact">{t('contact')}</NavItem>
         </NavCard>
         <NavCard>
-          <NavItem href="#corporate-courses">Corporate Courses</NavItem>
+          <NavItem href="#corporate-courses">{t('corporate_courses')}</NavItem>
         </NavCard>
         <NavCard>
-          <NavItem href="#private-courses">Private Courses</NavItem>
+          <NavItem href="#private-courses">{t('private_courses')}</NavItem>
         </NavCard>
         <NavCard>
-          <NavItem href="#about">About</NavItem>
+          <NavItem href="#about">{t('about')}</NavItem>
         </NavCard>
         <NavCard>
-          <NavItem href="#free-trial">Free Trial</NavItem>
+          <NavItem href="#free-trial">{t('free_trial')}</NavItem>
         </NavCard>
         <NavCard>
-          <NavItem href="#prices">Prices</NavItem>
+          <NavItem href="#prices">{t('prices')}</NavItem>
         </NavCard>
       </NavInner>
     </StyledNav>

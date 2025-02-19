@@ -1,7 +1,7 @@
-// Header.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-// A more Material-like App Bar design
 const StyledHeader = styled.header`
   width: 100%;
   background-color: #001f3f; /* Navy/blue background */
@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   font-family: 'Open Sans', Arial, sans-serif;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
-  /* Responsive behavior */
+
   @media (max-width: 600px) {
     padding: 0.75rem 1rem;
   }
@@ -31,7 +31,6 @@ const Title = styled.h1`
   font-weight: 700;
   letter-spacing: 0.5px;
 
-  /* Responsive scaling */
   @media (max-width: 600px) {
     font-size: 1.4rem;
   }
@@ -62,20 +61,43 @@ const Logo = styled.img`
     box-shadow: 0px 0px 12px rgba(74, 111, 165, 0.5);
   }
 
-  /* Responsive logo size */
   @media (max-width: 600px) {
     height: 50px;
   }
 `;
 
-export default function Header() {
+const LanguageButton = styled.button`
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  color: #333;
+  font-size: 1rem;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #ddd;
+  }
+`;
+
+const Header: React.FC = () => {
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'de' : 'en';
+    i18n.changeLanguage(newLang);
+  };
+
   return (
     <StyledHeader>
       <TitleWrapper>
-        <Title>Boarnet Business English</Title>
-        <Para>Let’s learn some BBE!</Para>
+        <Title>{t('header_title')}</Title>
+        <Para>{t('header_subtitle')}</Para>
       </TitleWrapper>
+      <LanguageButton onClick={toggleLanguage}>{t('language_switch')}</LanguageButton>
       <Logo src="/logo.png" alt="BBE Logo" />
     </StyledHeader>
   );
-}
+};
+
+export default Header;
